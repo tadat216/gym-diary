@@ -1,9 +1,47 @@
-import { Drawer } from "expo-router/drawer";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import { initializeDatabase } from "@/db";
 import "@/global.css";
+import { Ionicons } from "@expo/vector-icons";
+import { Drawer } from "expo-router/drawer";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Text, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function RootLayout() {
+  const [isDbReady, setIsDbReady] = useState(false);
+  const [dbError, setDbError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function setupDatabase() {
+      try {
+        await initializeDatabase();
+        setIsDbReady(true);
+      } catch (error) {
+        console.error("Failed to initialize database:", error);
+        setDbError(error instanceof Error ? error.message : "Unknown error");
+      }
+    }
+
+    setupDatabase();
+  }, []);
+
+  // Show loading screen while database initializes
+  if (!isDbReady) {
+    return (
+      <View className="flex-1 items-center justify-center bg-white">
+        {dbError ? (
+          <Text className="text-red-500 text-center px-4">
+            Database Error: {dbError}
+          </Text>
+        ) : (
+          <>
+            <ActivityIndicator size="large" />
+            <Text className="mt-4 text-gray-600">Loading...</Text>
+          </>
+        )}
+      </View>
+    );
+  }
+
   return (
     <GestureHandlerRootView className="flex-1">
       <Drawer>
