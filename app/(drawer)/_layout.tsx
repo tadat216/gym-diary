@@ -5,6 +5,16 @@ import { Drawer } from "expo-router/drawer";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function RootLayout() {
   const [isDbReady, setIsDbReady] = useState(false);
@@ -43,27 +53,29 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView className="flex-1">
-      <Drawer>
-        <Drawer.Screen
-          name="index"
-          options={{
-            title: "Workout Diary",
-            drawerIcon: ({ color, size }) => (
-              <Ionicons name="calendar" color={color} size={size} />
-            ),
-          }}
-        />
-        <Drawer.Screen
-          name="statistics"
-          options={{
-            title: "Statistics",
-            drawerIcon: ({ color, size }) => (
-              <Ionicons name="stats-chart" color={color} size={size} />
-            ),
-          }}
-        />
-      </Drawer>
-    </GestureHandlerRootView>
+    <QueryClientProvider client={queryClient}>
+      <GestureHandlerRootView className="flex-1">
+        <Drawer>
+          <Drawer.Screen
+            name="index"
+            options={{
+              title: "Workout Diary",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="calendar" color={color} size={size} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="statistics"
+            options={{
+              title: "Statistics",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="stats-chart" color={color} size={size} />
+              ),
+            }}
+          />
+        </Drawer>
+      </GestureHandlerRootView>
+    </QueryClientProvider>
   );
 }
