@@ -23,10 +23,10 @@ export const workout_exercises = sqliteTable("workout_exercises", {
   id: int("id").primaryKey({ autoIncrement: true }),
   workout_id: int("workout_id")
     .notNull()
-    .references(() => workouts.id),
+    .references(() => workouts.id, { onDelete: "cascade" }),
   exercise_id: int("exercise_id")
     .notNull()
-    .references(() => exercises.id),
+    .references(() => exercises.id, { onDelete: "cascade" }),
 });
 
 export const workout_exercises_details = sqliteTable(
@@ -35,7 +35,7 @@ export const workout_exercises_details = sqliteTable(
     id: int("id").primaryKey({ autoIncrement: true }),
     workout_exercise_id: int("workout_exercise_id")
       .notNull()
-      .references(() => workout_exercises.id),
+      .references(() => workout_exercises.id, { onDelete: "cascade" }),
     rep_count: int("rep_count").notNull(),
     weight: int("weight").notNull(),
   },
