@@ -20,7 +20,10 @@ export async function initializeDatabase() {
 
     // Import and run seed function
     const { seedMuscleGroups } = await import("./queries/muscle-groups");
+    const { seedExercises } = await import("./queries/exercises");
     await seedMuscleGroups();
+    await seedExercises();
+    console.log("Database seeding completed successfully");
   } catch (error) {
     console.error("Error initializing database:", error);
     throw error;
@@ -29,3 +32,4 @@ export async function initializeDatabase() {
 
 // Export all query functions
 export * from "./queries/muscle-groups";
+export * from "./queries/exercises";
