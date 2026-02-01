@@ -53,7 +53,6 @@ export default function RootLayout() {
       </View>
     );
   }
-
   return (
     <QueryClientProvider client={queryClient}>
       <Toast />
@@ -74,6 +73,15 @@ export default function RootLayout() {
               title: "Statistics",
               drawerIcon: ({ color, size }) => (
                 <Ionicons name="stats-chart" color={color} size={size} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="muscle-group-management"
+            options={{
+              title: "Muscle Group Management",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="body" color={color} size={size} />
               ),
             }}
           />
