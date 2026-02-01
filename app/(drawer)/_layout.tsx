@@ -2,6 +2,8 @@ import { initializeDatabase } from "@/db";
 import "@/global.css";
 import { Ionicons } from "@expo/vector-icons";
 import { Drawer } from "expo-router/drawer";
+import Toast from "react-native-toast-message";
+
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -54,6 +56,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toast />
       <GestureHandlerRootView className="flex-1">
         <Drawer>
           <Drawer.Screen
