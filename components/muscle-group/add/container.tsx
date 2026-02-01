@@ -1,16 +1,12 @@
-import useHooks from "./hooks";
-import View from "./view";
+import useAddMuscleGroup from "./hooks";
 import { ContainerProps } from "./types";
+import View from "./view";
 
-const Container = ({
-  isAddDialogOpen,
-  refetchMuscleGroups,
-  setIsAddDialogOpen,
-}: ContainerProps) => {
-  const { addMuscleGroupMutation, name, setName, color, setColor } = useHooks({
-    refetchMuscleGroups,
-    setIsAddDialogOpen,
-  });
+const Container = ({ isAddDialogOpen, setIsAddDialogOpen }: ContainerProps) => {
+  const { addMuscleGroupMutation, name, setName, color, setColor } =
+    useAddMuscleGroup({
+      setIsAddDialogOpen,
+    });
 
   return (
     <View

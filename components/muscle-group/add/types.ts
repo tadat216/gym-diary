@@ -1,11 +1,9 @@
 export interface ContainerProps {
-  refetchMuscleGroups: () => void;
   isAddDialogOpen: boolean;
   setIsAddDialogOpen: (isOpen: boolean) => void;
 }
 
 export interface HookProps {
-  refetchMuscleGroups: () => void;
   setIsAddDialogOpen: (isOpen: boolean) => void;
 }
 
