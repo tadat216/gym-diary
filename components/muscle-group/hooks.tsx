@@ -6,14 +6,13 @@ const useHooks = (): HookReturns => {
   const {
     data: muscleGroups,
     isLoading: isLoadingMuscleGroups,
-    refetch: refetchMuscleGroups,
     error,
   } = useQuery({
     queryKey: ["muscle-groups"],
     queryFn: getAllMuscleGroups,
   });
 
-  return { muscleGroups, isLoadingMuscleGroups, refetchMuscleGroups, error };
+  return { muscleGroups, isLoadingMuscleGroups, error };
 };
 
 export default useHooks;

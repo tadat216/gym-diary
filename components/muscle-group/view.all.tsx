@@ -1,51 +1,26 @@
-import { ViewAllProps } from "./types";
-import { View } from "react-native";
-import { ListItem, Text, Button, IconProps } from "@rneui/themed";
+import { Text } from "@rneui/themed";
+import { ScrollView, View } from "react-native";
 import AddMuscleGroup from "./add";
+import Item from "./item";
+import { ViewAllProps } from "./types";
 
 const _View = ({
   muscleGroups,
   isAddDialogOpen,
   setIsAddDialogOpen,
-  refetchMuscleGroups,
 }: ViewAllProps) => {
   return (
-    <View>
+    <View className="flex-1">
       <Text h2>Muscle Groups</Text>
       <AddMuscleGroup
         isAddDialogOpen={isAddDialogOpen}
         setIsAddDialogOpen={setIsAddDialogOpen}
-        refetchMuscleGroups={refetchMuscleGroups}
       />
-      {muscleGroups.map((group) => (
-        <ListItem key={group.id} bottomDivider>
-          <ListItem.Content>
-            <ListItem.Title>{group.name}</ListItem.Title>
-          </ListItem.Content>
-          <Button
-            icon={
-              {
-                name: "pencil",
-                type: "font-awesome",
-              } as IconProps
-            }
-            type="clear"
-            size="sm"
-          ></Button>
-          <Button
-            icon={
-              {
-                name: "trash",
-                type: "font-awesome",
-                color: "red",
-              } as IconProps
-            }
-            type="clear"
-            size="sm"
-          ></Button>
-          <ListItem.Chevron />
-        </ListItem>
-      ))}
+      <ScrollView className="flex-1">
+        {muscleGroups.map((group) => (
+          <Item key={group.id} muscleGroup={group} />
+        ))}
+      </ScrollView>
     </View>
   );
 };

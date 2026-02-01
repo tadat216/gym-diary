@@ -4,8 +4,7 @@ import ViewAll from "./view.all";
 import ViewLoading from "./view.loading";
 
 const Container = () => {
-  const { muscleGroups, isLoadingMuscleGroups, refetchMuscleGroups } =
-    useHooks();
+  const { muscleGroups, isLoadingMuscleGroups, error } = useHooks();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
   if (isLoadingMuscleGroups) {
@@ -17,7 +16,6 @@ const Container = () => {
       muscleGroups={muscleGroups || []}
       isAddDialogOpen={isAddDialogOpen}
       setIsAddDialogOpen={setIsAddDialogOpen}
-      refetchMuscleGroups={refetchMuscleGroups}
     />
   );
 };
