@@ -11,7 +11,7 @@ export const exercises = sqliteTable("exercises", {
   name: text("name").notNull(),
   muscle_group_id: int("muscle_group_id")
     .notNull()
-    .references(() => muscle_groups.id),
+    .references(() => muscle_groups.id, { onDelete: "cascade" }),
 });
 
 export const workouts = sqliteTable("workouts", {
