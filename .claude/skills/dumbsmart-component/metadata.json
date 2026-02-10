@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "organization": "GymDiary",
+  "date": "February 2026",
+  "author": "dat.ta",
+  "description": "Generates React Native components following the dumbsmart pattern with type-safe container/hooks/view separation. Optimized for token efficiency.",
+  "tags": ["react-native", "component-generator", "architecture", "dumbsmart"]
+}
