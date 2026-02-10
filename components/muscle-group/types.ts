@@ -1,13 +1,7 @@
 import { MuscleGroup } from "@/db";
-
-export interface HookReturns {
-  muscleGroups: MuscleGroup[] | undefined;
-  isLoadingMuscleGroups: boolean;
-  error: Error | null;
-}
+import { UseDialogReturn } from "@/hooks/useDialog";
 
 export interface ViewAllProps {
   muscleGroups: MuscleGroup[];
-  isAddDialogOpen: boolean;
-  setIsAddDialogOpen: (isOpen: boolean) => void;
+  addDialog: UseDialogReturn;
 }

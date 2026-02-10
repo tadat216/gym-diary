@@ -1,23 +1,16 @@
-import { useState } from "react";
-import useHooks from "./hooks";
+import useMuscleGroupList from "./hooks";
 import ViewAll from "./view.all";
 import ViewLoading from "./view.loading";
 
 const Container = () => {
-  const { muscleGroups, isLoadingMuscleGroups, error } = useHooks();
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const { muscleGroups, isLoadingMuscleGroups, error, addDialog } =
+    useMuscleGroupList();
 
   if (isLoadingMuscleGroups) {
     return <ViewLoading />;
   }
 
-  return (
-    <ViewAll
-      muscleGroups={muscleGroups || []}
-      isAddDialogOpen={isAddDialogOpen}
-      setIsAddDialogOpen={setIsAddDialogOpen}
-    />
-  );
+  return <ViewAll muscleGroups={muscleGroups || []} addDialog={addDialog} />;
 };
 
 export default Container;

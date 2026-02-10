@@ -1,8 +1,7 @@
 import { getAllMuscleGroups } from "@/db";
 import { useQuery } from "@tanstack/react-query";
-import { HookReturns } from "./types";
 
-const useHooks = (): HookReturns => {
+const useMuscleGroups = () => {
   const {
     data: muscleGroups,
     isLoading: isLoadingMuscleGroups,
@@ -15,4 +14,4 @@ const useHooks = (): HookReturns => {
   return { muscleGroups, isLoadingMuscleGroups, error };
 };
 
-export default useHooks;
+export default useMuscleGroups;
