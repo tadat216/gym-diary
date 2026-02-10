@@ -31,5 +31,9 @@ export async function initializeDatabase() {
 }
 
 // Export all query functions
-export * from "./queries/muscle-groups";
 export * from "./queries/exercises";
+export * from "./queries/muscle-groups";
+export * from "./queries/workout-exercises";
+export * from "./queries/workout-exercises-details";
+export * from "./queries/workouts";
+
