@@ -4,21 +4,21 @@ import View from "./view";
 
 const Container = ({
   isEditDialogOpen,
-  setIsEditDialogOpen,
+  onClose,
   exercise,
 }: ContainerProps) => {
-  const { editExerciseMutation, name, setName } = useEditExercise({
-    setIsEditDialogOpen,
+  const { updateExerciseMutation, name, setName } = useEditExercise({
     exercise,
+    onClose,
   });
 
   return (
     <View
       isDialogOpen={isEditDialogOpen}
-      setIsEditDialogOpen={setIsEditDialogOpen}
+      onClose={onClose}
       name={name}
       setName={setName}
-      editExerciseMutation={editExerciseMutation}
+      updateExerciseMutation={updateExerciseMutation}
     />
   );
 };
