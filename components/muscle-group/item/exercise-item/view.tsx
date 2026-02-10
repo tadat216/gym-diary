@@ -5,10 +5,8 @@ import { ViewProps } from "./types";
 
 const _View = ({
   exercise,
-  isEditDialogOpen,
-  setIsEditDialogOpen,
-  isDeleteDialogOpen,
-  setIsDeleteDialogOpen,
+  editDialog,
+  deleteDialog,
   deleteExerciseMutation,
   isDeleting,
 }: ViewProps) => {
@@ -28,7 +26,7 @@ const _View = ({
           }
           type="clear"
           size="sm"
-          onPress={() => setIsEditDialogOpen(true)}
+          onPress={editDialog.open}
         />
         <Button
           icon={
@@ -40,19 +38,19 @@ const _View = ({
           }
           type="clear"
           size="sm"
-          onPress={() => setIsDeleteDialogOpen(true)}
+          onPress={deleteDialog.open}
         />
       </ListItem>
 
       <EditExercise
-        isEditDialogOpen={isEditDialogOpen}
-        setIsEditDialogOpen={setIsEditDialogOpen}
+        isEditDialogOpen={editDialog.isOpen}
+        onClose={editDialog.close}
         exercise={exercise}
       />
 
       <ConfirmationDialog
-        isOpen={isDeleteDialogOpen}
-        onClose={() => setIsDeleteDialogOpen(false)}
+        isOpen={deleteDialog.isOpen}
+        onClose={deleteDialog.close}
         onConfirm={deleteExerciseMutation}
         title="Delete Exercise"
         message={`Are you sure you want to delete "${exercise.name}"?`}

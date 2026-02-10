@@ -1,24 +1,16 @@
-import useHook from "./hooks";
+import useExerciseItem from "./hooks";
 import { ContainerProps } from "./types";
 import View from "./view";
 
 const Container = ({ exercise }: ContainerProps) => {
-  const {
-    isEditDialogOpen,
-    setIsEditDialogOpen,
-    isDeleteDialogOpen,
-    setIsDeleteDialogOpen,
-    deleteExerciseMutation,
-    isDeleting,
-  } = useHook({ exercise });
+  const { editDialog, deleteDialog, deleteExerciseMutation, isDeleting } =
+    useExerciseItem({ exercise });
 
   return (
     <View
       exercise={exercise}
-      isEditDialogOpen={isEditDialogOpen}
-      setIsEditDialogOpen={setIsEditDialogOpen}
-      isDeleteDialogOpen={isDeleteDialogOpen}
-      setIsDeleteDialogOpen={setIsDeleteDialogOpen}
+      editDialog={editDialog}
+      deleteDialog={deleteDialog}
       deleteExerciseMutation={deleteExerciseMutation}
       isDeleting={isDeleting}
     />
