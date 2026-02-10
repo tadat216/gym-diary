@@ -85,6 +85,12 @@ export default function RootLayout() {
               ),
             }}
           />
+          <Drawer.Screen
+            name="workout-log/[date]"
+            options={{
+              drawerItemStyle: { display: "none" },
+            }}
+          />
         </Drawer>
       </GestureHandlerRootView>
     </QueryClientProvider>
