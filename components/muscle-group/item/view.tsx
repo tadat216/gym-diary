@@ -10,16 +10,12 @@ const _View = ({
   exercises,
   isLoading,
   error,
-  expanded,
-  setExpanded,
-  isEditDialogOpen,
-  setIsEditDialogOpen,
-  isDeleteDialogOpen,
-  setIsDeleteDialogOpen,
+  expandedDialog,
+  editDialog,
+  deleteDialog,
   deleteMuscleGroupMutation,
   isDeleting,
-  isAddExerciseDialogOpen,
-  setIsAddExerciseDialogOpen,
+  addExerciseDialog,
 }: ViewProps) => {
   return (
     <>
@@ -39,7 +35,7 @@ const _View = ({
               }
               type="clear"
               size="sm"
-              onPress={() => setIsAddExerciseDialogOpen(true)}
+              onPress={addExerciseDialog.open}
             ></Button>
             <Button
               icon={
@@ -51,7 +47,7 @@ const _View = ({
               }
               type="clear"
               size="sm"
-              onPress={() => setIsEditDialogOpen(true)}
+              onPress={editDialog.open}
             ></Button>
             <Button
               icon={
@@ -63,12 +59,12 @@ const _View = ({
               }
               type="clear"
               size="sm"
-              onPress={() => setIsDeleteDialogOpen(true)}
+              onPress={deleteDialog.open}
             ></Button>
           </>
         }
-        isExpanded={expanded}
-        onPress={() => setExpanded(!expanded)}
+        isExpanded={expandedDialog.isOpen}
+        onPress={expandedDialog.toggle}
         bottomDivider
       >
         {isLoading ? (
@@ -97,20 +93,20 @@ const _View = ({
       </ListItem.Accordion>
 
       <EditMuscleGroup
-        isEditDialogOpen={isEditDialogOpen}
-        setIsEditDialogOpen={setIsEditDialogOpen}
+        isEditDialogOpen={editDialog.isOpen}
+        onClose={editDialog.close}
         muscleGroup={muscleGroup}
       />
 
       <AddExercise
-        isAddDialogOpen={isAddExerciseDialogOpen}
-        setIsAddDialogOpen={setIsAddExerciseDialogOpen}
+        isAddDialogOpen={addExerciseDialog.isOpen}
+        onClose={addExerciseDialog.close}
         muscleGroupId={muscleGroup.id}
       />
 
       <ConfirmationDialog
-        isOpen={isDeleteDialogOpen}
-        onClose={() => setIsDeleteDialogOpen(false)}
+        isOpen={deleteDialog.isOpen}
+        onClose={deleteDialog.close}
         onConfirm={deleteMuscleGroupMutation}
         title="Delete Muscle Group"
         message={`Are you sure you want to delete "${muscleGroup.name}"? This will also delete all associated exercises.`}
