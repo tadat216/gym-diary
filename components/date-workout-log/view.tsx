@@ -1,10 +1,19 @@
+import { Text, View } from "react-native";
+import ExerciseList from "./exercise-list";
+import ExerciseSelector from "./exercise-selector";
 import { _ViewProps } from "./types";
-import { View, Text } from "react-native";
 
-const _View = ({ date }: _ViewProps) => {
+const _View = ({ date, workout, workoutExercises }: _ViewProps) => {
   return (
-    <View>
-      <Text>Logged date for: {date}</Text>
+    <View style={{ flex: 1, padding: 16 }}>
+      <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 16 }}>
+        Workout for: {date}
+      </Text>
+      <ExerciseSelector workoutId={workout?.id} date={date} />
+      <ExerciseList
+        workoutExercises={workoutExercises}
+        workoutId={workout?.id}
+      />
     </View>
   );
 };
