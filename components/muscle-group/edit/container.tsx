@@ -4,24 +4,21 @@ import View from "./view";
 
 const Container = ({
   isEditDialogOpen,
-  setIsEditDialogOpen,
+  onClose,
   muscleGroup,
 }: ContainerProps) => {
-  const { editMuscleGroupMutation, name, setName, color, setColor } =
-    useEditMuscleGroup({
-      setIsEditDialogOpen,
-      muscleGroup,
-    });
+  const { updateMuscleGroupMutation, name, setName, color, setColor } =
+    useEditMuscleGroup({ muscleGroup, onClose });
 
   return (
     <View
       isDialogOpen={isEditDialogOpen}
-      setIsEditDialogOpen={setIsEditDialogOpen}
+      onClose={onClose}
       name={name}
       setName={setName}
       color={color}
       setColor={setColor}
-      editMuscleGroupMutation={editMuscleGroupMutation}
+      updateMuscleGroupMutation={updateMuscleGroupMutation}
     />
   );
 };

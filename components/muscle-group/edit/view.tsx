@@ -4,18 +4,15 @@ import { ViewProps } from "./types";
 
 const _View = ({
   isDialogOpen,
-  setIsEditDialogOpen,
+  onClose,
   name,
   setName,
   color,
   setColor,
-  editMuscleGroupMutation,
+  updateMuscleGroupMutation,
 }: ViewProps) => {
   return (
-    <Dialog
-      isVisible={isDialogOpen}
-      onBackdropPress={() => setIsEditDialogOpen(false)}
-    >
+    <Dialog isVisible={isDialogOpen} onBackdropPress={onClose}>
       <Dialog.Title title="Edit Muscle Group" />
       <Input
         label="Name"
@@ -26,7 +23,7 @@ const _View = ({
       <Text>Color</Text>
       <ColorPicker color={color} setColor={setColor} />
 
-      <Button onPress={() => editMuscleGroupMutation()}>Update</Button>
+      <Button onPress={() => updateMuscleGroupMutation()}>Update</Button>
     </Dialog>
   );
 };
