@@ -5,22 +5,18 @@ import ColorPicker from "@/components/common/color-input";
 
 const _View = ({
   isDialogOpen,
-  setIsAddDialogOpen,
+  onClose,
+  onOpen,
   name,
   setName,
   color,
   setColor,
-  addMuscleGroupMutation,
+  createMuscleGroupMutation,
 }: ViewProps) => {
   return (
     <View>
-      <Button onPress={() => setIsAddDialogOpen(true)}>
-        Add New Muscle Group
-      </Button>
-      <Dialog
-        isVisible={isDialogOpen}
-        onBackdropPress={() => setIsAddDialogOpen(false)}
-      >
+      <Button onPress={onOpen}>Add New Muscle Group</Button>
+      <Dialog isVisible={isDialogOpen} onBackdropPress={onClose}>
         <Dialog.Title title="Add Muscle Group" />
         <Input
           label="Name"
@@ -31,7 +27,7 @@ const _View = ({
         <Text>Color</Text>
         <ColorPicker color={color} setColor={setColor} />
 
-        <Button onPress={() => addMuscleGroupMutation()}>Add</Button>
+        <Button onPress={() => createMuscleGroupMutation()}>Add</Button>
       </Dialog>
     </View>
   );
