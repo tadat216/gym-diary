@@ -3,16 +3,13 @@ import { ViewProps } from "./types";
 
 const _View = ({
   isDialogOpen,
-  setIsAddDialogOpen,
+  onClose,
   name,
   setName,
-  addExerciseMutation,
+  createExerciseMutation,
 }: ViewProps) => {
   return (
-    <Dialog
-      isVisible={isDialogOpen}
-      onBackdropPress={() => setIsAddDialogOpen(false)}
-    >
+    <Dialog isVisible={isDialogOpen} onBackdropPress={onClose}>
       <Dialog.Title title="Add Exercise" />
       <Input
         label="Name"
@@ -20,7 +17,7 @@ const _View = ({
         value={name}
         onChangeText={setName}
       />
-      <Button onPress={() => addExerciseMutation()}>Add</Button>
+      <Button onPress={() => createExerciseMutation()}>Add</Button>
     </Dialog>
   );
 };

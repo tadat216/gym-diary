@@ -4,21 +4,21 @@ import View from "./view";
 
 const Container = ({
   isAddDialogOpen,
-  setIsAddDialogOpen,
+  onClose,
   muscleGroupId,
 }: ContainerProps) => {
-  const { addExerciseMutation, name, setName } = useAddExercise({
-    setIsAddDialogOpen,
+  const { createExerciseMutation, name, setName } = useAddExercise({
     muscleGroupId,
+    onClose,
   });
 
   return (
     <View
       isDialogOpen={isAddDialogOpen}
-      setIsAddDialogOpen={setIsAddDialogOpen}
+      onClose={onClose}
       name={name}
       setName={setName}
-      addExerciseMutation={addExerciseMutation}
+      createExerciseMutation={createExerciseMutation}
     />
   );
 };
